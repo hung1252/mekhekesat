@@ -3060,6 +3060,7 @@ function updateTopbarDate(lang) {
 function applyLang(lang) {
   currentLang = lang;
   localStorage.setItem('mykheLang', lang);
+  updateTopbarDate(lang);
 
   var btn = document.getElementById('lang-btn');
   var flag = document.getElementById('lang-flag');
