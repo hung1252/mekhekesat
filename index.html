@@ -19,7 +19,7 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);color:var(--te
 .topbar a{color:rgba(255,255,255,0.85);text-decoration:none;}
 .topbar a:hover{color:#fff;}
 .topbar-right{display:flex;gap:20px;}
-header{background:linear-gradient(135deg,var(--red) 0%,var(--red-dark) 60%,#7B241C 100%);color:white;position:sticky;top:0;z-index:200;box-shadow:0 4px 20px rgba(0,0,0,0.2);}
+header{background:linear-gradient(135deg,#B7860B 0%,#9A6E00 60%,#7D5700 100%);color:white;position:sticky;top:0;z-index:200;box-shadow:0 4px 20px rgba(0,0,0,0.2);}
 .header-main{max-width:1200px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;gap:18px;}
 .header-emblem{width:68px;height:68px;flex-shrink:0;cursor:pointer;transition:transform 0.2s,filter 0.2s;}
 .header-emblem:hover{transform:scale(1.08);filter:brightness(1.1);}
@@ -474,16 +474,27 @@ body.lang-vi [data-en]::before { content: ""; }
     <!-- Language toggle in header -->
     <div style="display:flex;gap:5px;align-items:center;flex-shrink:0;margin-left:8px;">
       <button onclick="applyLang('vi')" id="btn-vi" title="Tiếng Việt"
-        style="background:rgba(255,255,255,0.18);border:2.5px solid rgba(255,255,255,0.8);border-radius:10px;padding:4px 8px;cursor:pointer;font-size:26px;line-height:1;transition:all 0.2s;display:flex;align-items:center;"
-        onmouseover="this.style.background='rgba(255,255,255,0.35)';this.style.transform='scale(1.1)'"
+        style="background:rgba(255,255,255,0.18);border:2.5px solid rgba(255,255,255,0.8);border-radius:10px;padding:5px 10px;cursor:pointer;font-size:12px;font-weight:700;line-height:1;transition:all 0.2s;display:flex;align-items:center;gap:5px;color:white;"
+        onmouseover="this.style.background='rgba(255,255,255,0.35)';this.style.transform='scale(1.05)'"
         onmouseout="this.style.background='rgba(255,255,255,0.18)';this.style.transform='scale(1)'">
-        🇻🇳
+        <svg width="24" height="16" viewBox="0 0 24 16" xmlns="http://www.w3.org/2000/svg" style="border-radius:2px;flex-shrink:0;">
+          <rect width="24" height="16" fill="#DA251D"/>
+          <polygon points="12,3 13.5,7.5 18,7.5 14.3,10.2 15.7,14.7 12,12 8.3,14.7 9.7,10.2 6,7.5 10.5,7.5" fill="#FFFF00"/>
+        </svg>
+        VI
       </button>
       <button onclick="applyLang('en')" id="btn-en" title="English"
-        style="background:rgba(255,255,255,0.05);border:2.5px solid transparent;border-radius:10px;padding:4px 8px;cursor:pointer;font-size:26px;line-height:1;transition:all 0.2s;display:flex;align-items:center;opacity:0.55;"
-        onmouseover="this.style.background='rgba(255,255,255,0.2)';this.style.transform='scale(1.1)'"
+        style="background:rgba(255,255,255,0.05);border:2.5px solid transparent;border-radius:10px;padding:5px 10px;cursor:pointer;font-size:12px;font-weight:700;line-height:1;transition:all 0.2s;display:flex;align-items:center;gap:5px;color:rgba(255,255,255,0.65);opacity:0.7;"
+        onmouseover="this.style.background='rgba(255,255,255,0.2)';this.style.transform='scale(1.05)'"
         onmouseout="this.style.background='rgba(255,255,255,0.05)';this.style.transform='scale(1)'">
-        🇬🇧
+        <svg width="24" height="16" viewBox="0 0 60 40" xmlns="http://www.w3.org/2000/svg" style="border-radius:2px;flex-shrink:0;">
+          <rect width="60" height="40" fill="#012169"/>
+          <path d="M0,0 L60,40 M60,0 L0,40" stroke="white" stroke-width="8"/>
+          <path d="M0,0 L60,40 M60,0 L0,40" stroke="#C8102E" stroke-width="4"/>
+          <path d="M30,0 V40 M0,20 H60" stroke="white" stroke-width="12"/>
+          <path d="M30,0 V40 M0,20 H60" stroke="#C8102E" stroke-width="8"/>
+        </svg>
+        EN
       </button>
     </div>
   </div>
