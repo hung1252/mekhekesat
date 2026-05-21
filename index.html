@@ -501,7 +501,7 @@ body.lang-vi [data-en]::before { content: ""; }
   <nav>
     <div class="nav-inner">
 
-      <div class="nav-item"><a href="#" onclick="showPage('home')" class="active" id="nav-home">🏠 Trang chủ</a></div>
+      <div class="nav-item"><a href="#" onclick="showPage('home')" class="active" id="nav-home" data-lang-key="nav_home">🏠 Trang chủ</a></div>
 
       <div class="nav-item">
         <a href="#" onclick="showPage('home')" data-lang-key="nav_about">Giới thiệu <span class="arr">▼</span></a>
@@ -537,13 +537,13 @@ body.lang-vi [data-en]::before { content: ""; }
       <div class="nav-item">
         <a href="#" onclick="showPage('dv-all')" data-lang-key="nav_service">Dịch vụ công <span class="arr">▼</span></a>
         <div class="dropdown">
-          <a href="#" onclick="showPage('dv-all')">Khai báo tạm trú / Tạm vắng</a>
-          <a href="#" onclick="showPage('dv-all')">Xác nhận hộ khẩu thường trú</a>
-          <a href="#" onclick="showPage('dv-all')">Chứng nhận lý lịch / Nhân thân</a>
-          <a href="#" onclick="showPage('dv-all')">Đăng ký khai sinh, khai tử</a>
-          <a href="#" onclick="showPage('dv-all')">Hỗ trợ hộ nghèo / Cận nghèo</a>
-          <a href="#" onclick="showPage('dv-all')">Thủ tục đất đai &amp; Canh tác</a>
-          <a href="#" onclick="showPage('dv-all')">Phản ánh kiến nghị</a>
+          <a href="#" onclick="showPage('dv-all')" data-lang-key="svc_temp_res">Khai báo tạm trú / Tạm vắng</a>
+          <a href="#" onclick="showPage('dv-all')" data-lang-key="svc_perm_res">Xác nhận hộ khẩu thường trú</a>
+          <a href="#" onclick="showPage('dv-all')" data-lang-key="svc_background">Chứng nhận lý lịch / Nhân thân</a>
+          <a href="#" onclick="showPage('dv-all')" data-lang-key="svc_birth_death">Đăng ký khai sinh, khai tử</a>
+          <a href="#" onclick="showPage('dv-all')" data-lang-key="svc_poverty">Hỗ trợ hộ nghèo / Cận nghèo</a>
+          <a href="#" onclick="showPage('dv-all')" data-lang-key="svc_land">Thủ tục đất đai &amp; Canh tác</a>
+          <a href="#" onclick="showPage('dv-all')" data-lang-key="svc_feedback">Phản ánh kiến nghị</a>
         </div>
       </div>
 
@@ -2849,6 +2849,14 @@ var VI = {
   // Header
   'site_title': 'Cổng Thông Tin Điện Tử Thôn My Khê',
   'site_subtitle': 'Xã Kẻ Sặt · Hải Phòng',
+  'nav_home': '🏠 Trang chủ',
+  'svc_temp_res': 'Khai báo tạm trú / Tạm vắng',
+  'svc_perm_res': 'Xác nhận hộ khẩu thường trú',
+  'svc_background': 'Chứng nhận lý lịch / Nhân thân',
+  'svc_birth_death': 'Đăng ký khai sinh, khai tử',
+  'svc_poverty': 'Hỗ trợ hộ nghèo / Cận nghèo',
+  'svc_land': 'Thủ tục đất đai & Canh tác',
+  'svc_feedback': 'Phản ánh kiến nghị',
   'search_placeholder': 'Tìm kiếm thông tin...',
   // Nav
   'nav_home': '🏠 Trang chủ',
@@ -2903,6 +2911,14 @@ var VI = {
 var EN = {
   'site_title': 'My Khe Village Information Portal',
   'site_subtitle': 'Ke Sat Commune · Hai Phong',
+  'nav_home': '🏠 Home',
+  'svc_temp_res': 'Temporary Residence Registration',
+  'svc_perm_res': 'Permanent Residence Confirmation',
+  'svc_background': 'Background / Identity Certificate',
+  'svc_birth_death': 'Birth & Death Registration',
+  'svc_poverty': 'Poor Household Support',
+  'svc_land': 'Land & Farming Procedures',
+  'svc_feedback': 'Feedback & Complaints',
   'search_placeholder': 'Search information...',
   'nav_home': '🏠 Home',
   'nav_about': 'About',
