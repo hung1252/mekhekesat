@@ -596,7 +596,7 @@ body.lang-vi [data-en]::before { content: ""; }
 </header>
 
 <div class="ticker">
-  <div class="ticker-label">🔔 Thông báo</div>
+  <div class="ticker-label" data-lang-key="ticker_label">🔔 Thông báo</div>
   <div class="ticker-inner">
     <a onclick="showPage('tt-noibo')" href="#">🌾 Lịch thu hoạch lúa vụ Hè Thu 2026 bắt đầu từ ngày 25/5</a>
     &nbsp;&nbsp;•&nbsp;&nbsp;
@@ -626,7 +626,7 @@ body.lang-vi [data-en]::before { content: ""; }
 </div>
     <div class="hero-badge">✦ Thôn Văn Hóa Tiêu Biểu ✦</div>
     <h2 data-lang-key="hero_title">Chào Mừng Đến Với Thôn My Khê</h2>
-    <p>Cổng thông tin điện tử chính thức — nơi cung cấp thông tin, chính sách, dịch vụ hành chính và kết nối cộng đồng nhân dân thôn My Khê, xã Kẻ Sặt, Hải Phòng</p>
+    <p data-lang-key="hero_desc">Cổng thông tin điện tử chính thức — nơi cung cấp thông tin, chính sách, dịch vụ hành chính và kết nối cộng đồng nhân dân thôn My Khê, xã Kẻ Sặt, Hải Phòng</p>
     <div class="hero-stats">
       <div class="hero-stat"><div class="num">1.240</div><div class="lbl" data-lang-key="stat_residents">Nhân khẩu</div></div>
       <div class="hero-stat"><div class="num">312</div><div class="lbl" data-lang-key="stat_households">Hộ dân</div></div>
@@ -2849,6 +2849,7 @@ var VI = {
   // Header
   'site_title': 'Cổng Thông Tin Điện Tử Thôn My Khê',
   'site_subtitle': 'Xã Kẻ Sặt · Hải Phòng',
+  'ticker_label': '🔔 Thông báo',
   'nav_home': '🏠 Trang chủ',
   'org_party': 'Chi bộ Đảng Cộng sản',
   'org_youth': 'Đoàn Thanh niên CS HCM',
@@ -2931,6 +2932,7 @@ var VI = {
 var EN = {
   'site_title': 'My Khe Village Information Portal',
   'site_subtitle': 'Ke Sat Commune · Hai Phong',
+  'ticker_label': '🔔 Announcements',
   'nav_home': '🏠 Home',
   'org_party': 'Communist Party Cell',
   'org_youth': 'Ho Chi Minh Youth Union',
