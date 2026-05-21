@@ -449,11 +449,10 @@ body.lang-vi [data-en]::before { content: ""; }
 
 <div class="topbar">
   <div class="topbar-inner">
-    <span>📅 Thứ Ba, 19 tháng 5 năm 2026</span>
+    <span id="topbar-date">📅 Thứ Ba, 19 tháng 5 năm 2026</span>
     <div class="topbar-right">
       <a href="mailto:mykhekesatHD@gmail.com">📧 mykhekesatHD@gmail.com</a>
-      <a href="tel:0912000001">☎ Đường dây nóng: 0912.000.001</a>
-
+      <a href="tel:0912000001" data-lang-key="topbar_hotline">☎ Đường dây nóng: 0912.000.001</a>
     </div>
   </div>
 </div>
@@ -2850,6 +2849,7 @@ var VI = {
   'site_title': 'Cổng Thông Tin Điện Tử Thôn My Khê',
   'site_subtitle': 'Xã Kẻ Sặt · Hải Phòng',
   'ticker_label': '🔔 Thông báo',
+  'topbar_hotline': '☎ Đường dây nóng: 0912.000.001',
   'nav_home': '🏠 Trang chủ',
   'org_party': 'Chi bộ Đảng Cộng sản',
   'org_youth': 'Đoàn Thanh niên CS HCM',
@@ -2933,6 +2933,7 @@ var EN = {
   'site_title': 'My Khe Village Information Portal',
   'site_subtitle': 'Ke Sat Commune · Hai Phong',
   'ticker_label': '🔔 Announcements',
+  'topbar_hotline': '☎ Hotline: 0912.000.001',
   'nav_home': '🏠 Home',
   'org_party': 'Communist Party Cell',
   'org_youth': 'Ho Chi Minh Youth Union',
@@ -3037,6 +3038,23 @@ function applyTranslations() {
       }
     }
   });
+}
+
+function updateTopbarDate(lang) {
+  var now = new Date();
+  var dateEl = document.getElementById('topbar-date');
+  if (!dateEl) return;
+  if (lang === 'en') {
+    var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    dateEl.textContent = '📅 ' + now.toLocaleDateString('en-US', options);
+  } else {
+    var days = ['Chủ nhật','Thứ Hai','Thứ Ba','Thứ Tư','Thứ Năm','Thứ Sáu','Thứ Bảy'];
+    var d = days[now.getDay()];
+    var day = now.getDate();
+    var month = now.getMonth() + 1;
+    var year = now.getFullYear();
+    dateEl.textContent = '📅 ' + d + ', ' + day + ' tháng ' + month + ' năm ' + year;
+  }
 }
 
 function applyLang(lang) {
