@@ -550,44 +550,44 @@ body.lang-vi [data-en]::before { content: ""; }
       <div class="nav-item">
         <a href="#doan-the" onclick="showPage('home')" data-lang-key="nav_org">Các đoàn thể <span class="arr">▼</span></a>
         <div class="dropdown">
-          <a href="#doan-the" onclick="goToDT('dt-chibo')">Chi bộ Đảng Cộng sản</a>
-          <a href="#doan-the" onclick="goToDT('dt-doantn')">Đoàn Thanh niên CS HCM</a>
-          <a href="#doan-the" onclick="goToDT('dt-nct')">Hội Người cao tuổi</a>
-          <a href="#doan-the" onclick="goToDT('dt-pn')">Hội Liên hiệp Phụ nữ</a>
-          <a href="#doan-the" onclick="goToDT('dt-nd')">Hội Nông dân</a>
-          <a href="#doan-the" onclick="goToDT('dt-ccb')">Hội Cựu chiến binh</a>
+          <a href="#doan-the" onclick="goToDT('dt-chibo')" data-lang-key="org_party">Chi bộ Đảng Cộng sản</a>
+          <a href="#doan-the" onclick="goToDT('dt-doantn')" data-lang-key="org_youth">Đoàn Thanh niên CS HCM</a>
+          <a href="#doan-the" onclick="goToDT('dt-nct')" data-lang-key="org_elderly">Hội Người cao tuổi</a>
+          <a href="#doan-the" onclick="goToDT('dt-pn')" data-lang-key="org_women">Hội Liên hiệp Phụ nữ</a>
+          <a href="#doan-the" onclick="goToDT('dt-nd')" data-lang-key="org_farmers">Hội Nông dân</a>
+          <a href="#doan-the" onclick="goToDT('dt-ccb')" data-lang-key="org_veterans">Hội Cựu chiến binh</a>
         </div>
       </div>
 
       <div class="nav-item">
         <a href="#" onclick="showPage('vb-all')" data-lang-key="nav_doc">Văn bản <span class="arr">▼</span></a>
         <div class="dropdown">
-          <a href="#" onclick="showPage('vb-all')">Quy ước thôn My Khê</a>
-          <a href="#" onclick="showPage('vb-all')">Biên bản họp thôn</a>
-          <a href="#" onclick="showPage('vb-all')">Báo cáo kinh tế – xã hội</a>
-          <a href="#" onclick="showPage('vb-all')">Nghị quyết HĐND xã</a>
-          <a href="#" onclick="showPage('vb-all')">Quyết định UBND xã</a>
-          <a href="#" onclick="showPage('vb-all')">Văn bản pháp luật</a>
+          <a href="#" onclick="showPage('vb-all')" data-lang-key="doc_rules">Quy ước thôn My Khê</a>
+          <a href="#" onclick="showPage('vb-all')" data-lang-key="doc_minutes">Biên bản họp thôn</a>
+          <a href="#" onclick="showPage('vb-all')" data-lang-key="doc_report">Báo cáo kinh tế – xã hội</a>
+          <a href="#" onclick="showPage('vb-all')" data-lang-key="doc_resolution">Nghị quyết HĐND xã</a>
+          <a href="#" onclick="showPage('vb-all')" data-lang-key="doc_decision">Quyết định UBND xã</a>
+          <a href="#" onclick="showPage('vb-all')" data-lang-key="doc_legal">Văn bản pháp luật</a>
         </div>
       </div>
 
       <div class="nav-item">
         <a href="#" onclick="showPage('av-anh')" data-lang-key="nav_media">Ảnh &amp; Video <span class="arr">▼</span></a>
         <div class="dropdown">
-          <a href="#" onclick="showPage('av-anh')">🖼 Thư viện ảnh</a>
-          <a href="#" onclick="showPage('av-video')">🎬 Video thôn</a>
-          <a href="#" onclick="showPage('av-ghiam')">🎙 Ghi âm kể chuyện</a>
+          <a href="#" onclick="showPage('av-anh')" data-lang-key="media_photo">🖼 Thư viện ảnh</a>
+          <a href="#" onclick="showPage('av-video')" data-lang-key="media_video">🎬 Video thôn</a>
+          <a href="#" onclick="showPage('av-ghiam')" data-lang-key="media_audio">🎙 Ghi âm kể chuyện</a>
         </div>
       </div>
 
       <div class="nav-item">
         <a href="#" onclick="showPage('lh-all')" data-lang-key="nav_contact">Liên hệ <span class="arr">▼</span></a>
         <div class="dropdown">
-          <a href="tel:0912000001">Trưởng thôn: 0912.000.001</a>
-          <a href="tel:0905000002">Phó thôn: 0905.000.002</a>
-          <a href="mailto:mykhekesatHD@gmail.com">Email thôn</a>
-          <a href="#" onclick="showPage('lh-all')">Địa chỉ &amp; Bản đồ</a>
-          <a href="#" onclick="showPage('lh-all')">Gửi phản ánh kiến nghị</a>
+          <a href="tel:0912000001" data-lang-key="contact_head">Trưởng thôn: 0912.000.001</a>
+          <a href="tel:0905000002" data-lang-key="contact_deputy">Phó thôn: 0905.000.002</a>
+          <a href="mailto:mykhekesatHD@gmail.com" data-lang-key="contact_email">Email thôn</a>
+          <a href="#" onclick="showPage('lh-all')" data-lang-key="contact_map">Địa chỉ &amp; Bản đồ</a>
+          <a href="#" onclick="showPage('lh-all')" data-lang-key="contact_feedback">Gửi phản ánh kiến nghị</a>
         </div>
       </div>
 
@@ -2850,6 +2850,26 @@ var VI = {
   'site_title': 'Cổng Thông Tin Điện Tử Thôn My Khê',
   'site_subtitle': 'Xã Kẻ Sặt · Hải Phòng',
   'nav_home': '🏠 Trang chủ',
+  'org_party': 'Chi bộ Đảng Cộng sản',
+  'org_youth': 'Đoàn Thanh niên CS HCM',
+  'org_elderly': 'Hội Người cao tuổi',
+  'org_women': 'Hội Liên hiệp Phụ nữ',
+  'org_farmers': 'Hội Nông dân',
+  'org_veterans': 'Hội Cựu chiến binh',
+  'doc_rules': 'Quy ước thôn My Khê',
+  'doc_minutes': 'Biên bản họp thôn',
+  'doc_report': 'Báo cáo kinh tế – xã hội',
+  'doc_resolution': 'Nghị quyết HĐND xã',
+  'doc_decision': 'Quyết định UBND xã',
+  'doc_legal': 'Văn bản pháp luật',
+  'media_photo': '🖼 Thư viện ảnh',
+  'media_video': '🎬 Video thôn',
+  'media_audio': '🎙 Ghi âm kể chuyện',
+  'contact_head': 'Trưởng thôn: 0912.000.001',
+  'contact_deputy': 'Phó thôn: 0905.000.002',
+  'contact_email': 'Email thôn',
+  'contact_map': 'Địa chỉ & Bản đồ',
+  'contact_feedback': 'Gửi phản ánh kiến nghị',
   'svc_temp_res': 'Khai báo tạm trú / Tạm vắng',
   'svc_perm_res': 'Xác nhận hộ khẩu thường trú',
   'svc_background': 'Chứng nhận lý lịch / Nhân thân',
@@ -2912,6 +2932,26 @@ var EN = {
   'site_title': 'My Khe Village Information Portal',
   'site_subtitle': 'Ke Sat Commune · Hai Phong',
   'nav_home': '🏠 Home',
+  'org_party': 'Communist Party Cell',
+  'org_youth': 'Ho Chi Minh Youth Union',
+  'org_elderly': 'Elderly Association',
+  'org_women': "Women's Union",
+  'org_farmers': "Farmers' Association",
+  'org_veterans': 'Veterans Association',
+  'doc_rules': 'Village Regulations',
+  'doc_minutes': 'Village Meeting Minutes',
+  'doc_report': 'Socio-Economic Report',
+  'doc_resolution': 'Commune Council Resolution',
+  'doc_decision': 'Commune Committee Decision',
+  'doc_legal': 'Legal Documents',
+  'media_photo': '🖼 Photo Gallery',
+  'media_video': '🎬 Village Videos',
+  'media_audio': '🎙 Story Recordings',
+  'contact_head': 'Village Head: 0912.000.001',
+  'contact_deputy': 'Deputy Head: 0905.000.002',
+  'contact_email': 'Village Email',
+  'contact_map': 'Address & Map',
+  'contact_feedback': 'Submit Feedback',
   'svc_temp_res': 'Temporary Residence Registration',
   'svc_perm_res': 'Permanent Residence Confirmation',
   'svc_background': 'Background / Identity Certificate',
