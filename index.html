@@ -466,6 +466,42 @@ footer{background:#0D1B2A;color:rgba(255,255,255,0.75);padding:36px 24px 18px;}
 
 
 
+
+/* ===== BACK TO TOP ===== */
+#back-to-top{position:fixed;bottom:24px;right:24px;width:44px;height:44px;background:var(--red);color:white;border:none;border-radius:50%;cursor:pointer;font-size:20px;display:none;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,0,0,0.25);z-index:999;transition:all 0.3s;line-height:1;}
+#back-to-top:hover{background:var(--red-dark);transform:translateY(-3px);}
+#back-to-top.visible{display:flex;}
+
+/* ===== WEATHER WIDGET ===== */
+#weather-widget{background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);border-radius:10px;padding:5px 12px;display:flex;align-items:center;gap:7px;cursor:pointer;font-size:12px;color:white;flex-shrink:0;white-space:nowrap;transition:background 0.2s;}
+#weather-widget:hover{background:rgba(255,255,255,0.22);}
+#weather-temp{font-weight:700;font-size:14px;}
+#weather-icon{font-size:18px;}
+
+/* ===== BADGE THÔNG BÁO ===== */
+.notif-badge{background:#FF3B30;color:white;font-size:9px;font-weight:700;padding:1px 5px;border-radius:8px;margin-left:4px;vertical-align:top;display:inline-block;line-height:14px;animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.6;}}
+
+/* ===== SEARCH HIGHLIGHT ===== */
+.search-box-wrap{position:relative;display:flex;align-items:center;}
+#search-results-drop{position:absolute;top:100%;left:0;right:0;background:white;border-radius:0 0 8px 8px;box-shadow:0 8px 24px rgba(0,0,0,0.15);z-index:500;max-height:280px;overflow-y:auto;display:none;}
+.search-result-item{padding:9px 14px;border-bottom:1px solid #f0f0f0;cursor:pointer;font-size:13px;color:#222;}
+.search-result-item:hover{background:#FFF8E7;}
+.search-result-item .sr-title{font-weight:600;color:var(--red);}
+.search-result-item .sr-desc{font-size:11px;color:#666;margin-top:2px;}
+.search-no-result{padding:12px 14px;font-size:13px;color:#999;text-align:center;}
+
+/* ===== COPY PHONE ===== */
+.copy-phone{cursor:pointer;border-bottom:1px dashed rgba(255,255,255,0.4);position:relative;}
+.copy-toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:#333;color:#fff;padding:8px 18px;border-radius:20px;font-size:13px;z-index:9999;opacity:0;transition:opacity 0.3s;pointer-events:none;}
+.copy-toast.show{opacity:1;}
+
+/* ===== PRINT BUTTON ===== */
+#btn-print{background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.25);border-radius:8px;color:white;padding:4px 10px;font-size:12px;cursor:pointer;display:flex;align-items:center;gap:4px;transition:background 0.2s;white-space:nowrap;}
+#btn-print:hover{background:rgba(255,255,255,0.25);}
+@media print{#back-to-top,nav,header,.ticker,#btn-print,#weather-widget,#btn-vi,#btn-en{display:none!important;}.hero{min-height:auto!important;}}
+@media(max-width:600px){#weather-widget{display:none;}#btn-print{display:none;}}
+
 /* ===== BILINGUAL SYSTEM ===== */
 [data-en] { }
 body.lang-en [data-vi] { display: none !important; }
@@ -481,7 +517,7 @@ body.lang-vi [data-en]::before { content: ""; }
     <span id="topbar-date">📅 Thứ Ba, 19 tháng 5 năm 2026</span>
     <div class="topbar-right">
       <a href="mailto:mykhekesatHD@gmail.com">📧 mykhekesatHD@gmail.com</a>
-      <a href="tel:0912000001" data-lang-key="topbar_hotline">☎ Đường dây nóng: 0912.000.001</a>
+      <a href="tel:0912000001" data-lang-key="topbar_hotline" onclick="copyPhone(event,'0912000001')">☎ Đường dây nóng: 0912.000.001</a>
     </div>
   </div>
 </div>
@@ -499,8 +535,14 @@ body.lang-vi [data-en]::before { content: ""; }
         <button>🔍</button>
       </div>
     </div>
-    <!-- Language toggle in header -->
-    <div style="display:flex;gap:5px;align-items:center;flex-shrink:0;margin-left:8px;">
+    <!-- Weather + Print + Language -->
+    <div style="display:flex;gap:6px;align-items:center;flex-shrink:0;margin-left:8px;">
+      <div id="weather-widget" onclick="fetchWeather()" title="Thời tiết Hải Phòng">
+        <span id="weather-icon">🌤</span>
+        <span id="weather-temp">--°C</span>
+      </div>
+      <button id="btn-print" onclick="window.print()" title="In trang">🖨 In</button>
+      <div style="display:flex;gap:5px;align-items:center;">
       <button onclick="applyLang('vi')" id="btn-vi" title="Tiếng Việt"
         style="background:rgba(255,255,255,0.18);border:2.5px solid rgba(255,255,255,0.8);border-radius:10px;padding:5px 10px;cursor:pointer;font-size:12px;font-weight:700;line-height:1;transition:all 0.2s;display:flex;align-items:center;gap:5px;color:white;"
         onmouseover="this.style.background='rgba(255,255,255,0.35)';this.style.transform='scale(1.05)'"
@@ -524,6 +566,7 @@ body.lang-vi [data-en]::before { content: ""; }
         </svg>
         EN
       </button>
+      </div>
     </div>
   </div>
   <nav>
@@ -553,7 +596,7 @@ body.lang-vi [data-en]::before { content: ""; }
       </div>
 
       <div class="nav-item">
-        <a href="#" onclick="showPage('tb-all')" data-lang-key="nav_notice">Thông báo <span class="arr">▼</span></a>
+        <a href="#" onclick="showPage('tb-all')" data-lang-key="nav_notice">Thông báo <span class="notif-badge">3</span> <span class="arr">▼</span></a>
         <div class="dropdown">
           <a href="#" onclick="showPage('tb-all')" data-lang-key="notice_admin">Thông báo hành chính</a>
           <a href="#" onclick="showPage('tb-yte')" data-lang-key="notice_health">Thông báo y tế &amp; môi trường</a>
@@ -2659,6 +2702,12 @@ body.lang-vi [data-en]::before { content: ""; }
     <span style="text-align:right;line-height:1.6;">Thiết kế: <span style="color:var(--gold-light);font-weight:700;">Hoàng Tam Hùng</span><br>Quà tặng 🎁 <span style="color:var(--gold-light);">Thôn My Khê</span></span>
   </div>
 </footer>
+
+<!-- BACK TO TOP -->
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Lên đầu trang">▲</button>
+
+<!-- COPY TOAST -->
+<div class="copy-toast" id="copy-toast">✓ Đã sao chép số điện thoại</div>
 
 <!-- LOGO MODAL -->
 <div class="logo-modal-overlay" id="logoModal" onclick="if(event.target===this)closeLogoModal()">
