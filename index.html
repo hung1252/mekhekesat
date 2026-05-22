@@ -3195,6 +3195,28 @@ document.addEventListener('DOMContentLoaded', function() {
   applyLang(currentLang);
 });
 
+// ===== VISIT COUNTER (localStorage) =====
+(function(){
+  var KEY = 'mykhe_visits';
+  var SESSION_KEY = 'mykhe_session';
+  var BASE = 1247;
+  var stored = parseInt(localStorage.getItem(KEY) || BASE);
+  if(!sessionStorage.getItem(SESSION_KEY)){
+    stored = stored + 1;
+    localStorage.setItem(KEY, stored);
+    sessionStorage.setItem(SESSION_KEY, '1');
+  }
+  var el = document.getElementById('vc-num');
+  if(el){
+    var current = Math.max(0, stored - 30);
+    var timer = setInterval(function(){
+      current += Math.ceil((stored - current) / 8);
+      if(current >= stored){ current = stored; clearInterval(timer); }
+      el.textContent = current.toLocaleString('vi-VN');
+    }, 40);
+  }
+})();
+
 </script>
 </body>
 </html>
