@@ -468,9 +468,6 @@ footer{background:#0D1B2A;color:rgba(255,255,255,0.75);padding:36px 24px 18px;}
 
 
 
-/* ===== VISIT COUNTER ===== */
-#visit-counter{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:8px;padding:4px 12px;font-size:12px;color:rgba(255,255,255,0.8);margin-left:8px;}
-#visit-counter span.vc-num{font-weight:700;color:var(--gold-light);font-size:14px;}
 
 /* ===== BACK TO TOP ===== */
 #back-to-top{position:fixed;bottom:24px;right:24px;width:44px;height:44px;background:var(--red);color:white;border:none;border-radius:50%;cursor:pointer;font-size:20px;display:none;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,0,0,0.25);z-index:999;transition:all 0.3s;line-height:1;}
@@ -708,6 +705,12 @@ body.lang-vi [data-en]::before { content: ""; }
       <div class="hero-stat"><div class="num">312</div><div class="lbl" data-lang-key="stat_households">Hộ dân</div></div>
       <div class="hero-stat"><div class="num">47</div><div class="lbl" data-lang-key="stat_members">Đảng viên</div></div>
       <div class="hero-stat"><div class="num">98%</div><div class="lbl" data-lang-key="stat_culture">Hộ văn hóa</div></div>
+    </div>
+    <!-- Visit Counter -->
+    <div style="margin-top:18px;display:flex;align-items:center;justify-content:center;gap:8px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.2);border-radius:12px;padding:8px 24px;display:inline-flex;">
+      <span style="font-size:18px;">👁</span>
+      <span style="color:rgba(255,255,255,0.8);font-size:13px;" data-lang-key="visit_label">Lượt truy cập:</span>
+      <span id="vc-num" style="font-size:20px;font-weight:700;color:#FFD700;letter-spacing:1px;">...</span>
     </div>
   </div>
 </div>
@@ -3009,6 +3012,7 @@ var VI = {
   'hero_title': 'Chào Mừng Đến Với Thôn My Khê',
   'hero_desc': 'Cổng thông tin điện tử chính thức của thôn My Khê, xã Kẻ Sặt, Hải Phòng.',
   // Stats
+  'visit_label': 'Lượt truy cập:',
   'stat_residents': 'Nhân khẩu',
   'stat_households': 'Hộ dân',
   'stat_members': 'Đảng viên',
@@ -3087,6 +3091,7 @@ var EN = {
   'notice_culture': 'Culture & Education Notices',
   'hero_title': 'Welcome to My Khe Village',
   'hero_desc': 'Official digital portal of My Khe Village, Ke Sat Commune, Hai Phong.',
+  'visit_label': 'Page Views:',
   'stat_residents': 'Residents',
   'stat_households': 'Households',
   'stat_members': 'Party Members',
