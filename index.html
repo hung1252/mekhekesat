@@ -3313,6 +3313,25 @@ document.addEventListener('DOMContentLoaded', function() {
   applyLang(currentLang);
 });
 
+// ===== WEATHER =====
+function fetchWeather(){
+  var icons={0:'☀️',1:'🌤',2:'⛅',3:'☁️',45:'🌫',48:'🌫',51:'🌦',53:'🌦',55:'🌧',61:'🌧',63:'🌧',65:'🌧',80:'🌦',81:'🌧',82:'⛈',95:'⛈',96:'⛈',99:'⛈'};
+  fetch('https://api.open-meteo.com/v1/forecast?latitude=20.8449&longitude=106.6881&current_weather=true')
+    .then(function(r){return r.json();})
+    .then(function(d){
+      var temp=Math.round(d.current_weather.temperature);
+      var icon=icons[d.current_weather.weathercode]||'🌤';
+      document.getElementById('weather-icon').textContent=icon;
+      document.getElementById('weather-temp').textContent=temp+'°C';
+      document.getElementById('weather-widget').title='Thời tiết Hải Phòng: '+temp+'°C';
+    })
+    .catch(function(){
+      document.getElementById('weather-temp').textContent='N/A';
+    });
+}
+fetchWeather();
+setInterval(fetchWeather,600000);
+
 // ===== VISIT COUNTER (localStorage) =====
 (function(){
   var KEY = 'mykhe_visits';
