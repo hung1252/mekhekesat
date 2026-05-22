@@ -654,6 +654,9 @@ body.lang-vi [data-en]::before { content: ""; }
       </div>
 
       <div class="nav-item">
+        <a href="#" onclick="showPage('huongdan')" data-lang-key="nav_guide">Hướng dẫn</a>
+      </div>
+      <div class="nav-item">
         <a href="#" onclick="showPage('lh-all')" data-lang-key="nav_contact">Liên hệ <span class="arr">▼</span></a>
         <div class="dropdown">
           <a href="tel:0912000001" data-lang-key="contact_head">Trưởng thôn: 0912.000.001</a>
@@ -2717,6 +2720,117 @@ body.lang-vi [data-en]::before { content: ""; }
 <!-- COPY TOAST -->
 <div class="copy-toast" id="copy-toast">✓ Đã sao chép số điện thoại</div>
 
+
+<!-- HUONG DAN PAGE -->
+<div id="page-huongdan" class="page-section" style="display:none;">
+  <div style="max-width:900px;margin:0 auto;padding:24px 16px;">
+
+    <!-- Header -->
+    <div style="background:linear-gradient(135deg,#8B1A1A,#6B0F0F);color:white;padding:28px 32px;border-radius:12px;margin-bottom:24px;text-align:center;">
+      <div style="font-size:36px;margin-bottom:8px;">📋</div>
+      <h2 style="font-size:22px;margin-bottom:6px;">Hướng Dẫn Sử Dụng<br>Cổng Thông Tin Điện Tử Thôn My Khê</h2>
+      <p style="font-size:13px;opacity:0.85;">Dành cho bà con nhân dân thôn My Khê, xã Kẻ Sặt, Hải Phòng</p>
+      <div style="background:rgba(255,255,255,0.15);border-radius:6px;padding:6px 16px;display:inline-block;margin-top:10px;font-size:13px;font-weight:bold;">🌐 mekhekesat.pages.dev</div>
+    </div>
+
+    <!-- Cách truy cập -->
+    <div style="background:white;border-radius:12px;padding:22px 26px;margin-bottom:18px;box-shadow:0 2px 8px rgba(0,0,0,0.07);">
+      <h3 style="color:#8B1A1A;font-size:16px;margin-bottom:14px;padding-bottom:10px;border-bottom:2px solid #f0e0e0;">🚀 Cách Truy Cập Website</h3>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <div style="display:flex;gap:12px;align-items:flex-start;"><span style="background:#8B1A1A;color:white;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:bold;flex-shrink:0;">1</span><span style="font-size:13px;line-height:1.6;">Mở trình duyệt web trên điện thoại hoặc máy tính (<strong>Chrome, Firefox, Cốc Cốc...</strong>)</span></div>
+        <div style="display:flex;gap:12px;align-items:flex-start;"><span style="background:#8B1A1A;color:white;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:bold;flex-shrink:0;">2</span><span style="font-size:13px;line-height:1.6;">Gõ vào thanh địa chỉ: <strong style="color:#8B1A1A;">mekhekesat.pages.dev</strong> rồi nhấn Enter</span></div>
+        <div style="display:flex;gap:12px;align-items:flex-start;"><span style="background:#8B1A1A;color:white;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:bold;flex-shrink:0;">3</span><span style="font-size:13px;line-height:1.6;">Trang tải trong vài giây — <strong>không cần đăng ký, không cần mật khẩu, hoàn toàn miễn phí</strong></span></div>
+      </div>
+      <div style="background:#FFF8E7;border-left:4px solid #D4AC0D;border-radius:0 8px 8px 0;padding:10px 14px;margin-top:14px;font-size:12.5px;color:#555;">
+        <strong style="color:#9A7D00;">💡 Mẹo:</strong> Trên điện thoại, bấm ⋯ → <strong>Thêm vào màn hình chính</strong> để truy cập nhanh như ứng dụng!
+      </div>
+    </div>
+
+    <!-- Tính năng -->
+    <div style="background:white;border-radius:12px;padding:22px 26px;margin-bottom:18px;box-shadow:0 2px 8px rgba(0,0,0,0.07);">
+      <h3 style="color:#8B1A1A;font-size:16px;margin-bottom:14px;padding-bottom:10px;border-bottom:2px solid #f0e0e0;">⚡ Các Tính Năng & Tiện Ích</h3>
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;">
+
+        <div style="background:#fafafa;border:1px solid #e8e8e8;border-radius:8px;padding:14px;">
+          <div style="font-weight:bold;color:#333;margin-bottom:5px;">🔍 Tìm Kiếm Nhanh</div>
+          <div style="font-size:12.5px;color:#555;line-height:1.6;">Gõ từ khóa vào ô tìm kiếm (header) → kết quả hiện ngay → bấm chọn để đến trang cần xem.</div>
+        </div>
+
+        <div style="background:#fafafa;border:1px solid #e8e8e8;border-radius:8px;padding:14px;">
+          <div style="font-weight:bold;color:#333;margin-bottom:5px;">🇻🇳 🇬🇧 Chuyển Ngôn Ngữ</div>
+          <div style="font-size:12.5px;color:#555;line-height:1.6;">Bấm cờ <strong>VI</strong> (tiếng Việt) hoặc <strong>EN</strong> (tiếng Anh) trong header — toàn trang chuyển ngay.</div>
+        </div>
+
+        <div style="background:#fafafa;border:1px solid #e8e8e8;border-radius:8px;padding:14px;">
+          <div style="font-weight:bold;color:#333;margin-bottom:5px;">🌤 Thời Tiết Hải Phòng</div>
+          <div style="font-size:12.5px;color:#555;line-height:1.6;">Nhiệt độ thực tế hiển thị trong header, tự cập nhật 10 phút/lần. Bấm để làm mới ngay.</div>
+        </div>
+
+        <div style="background:#fafafa;border:1px solid #e8e8e8;border-radius:8px;padding:14px;">
+          <div style="font-weight:bold;color:#333;margin-bottom:5px;">🔔 Thông Báo Mới</div>
+          <div style="font-size:12.5px;color:#555;line-height:1.6;">Số đỏ nhấp nháy trên menu <strong>Thông báo</strong> cho biết có tin mới. Bấm vào để xem đầy đủ.</div>
+        </div>
+
+        <div style="background:#fafafa;border:1px solid #e8e8e8;border-radius:8px;padding:14px;">
+          <div style="font-weight:bold;color:#333;margin-bottom:5px;">🖼 Xem Ảnh Phóng To</div>
+          <div style="font-size:12.5px;color:#555;line-height:1.6;">Vào <strong>Ảnh & Video → Thư viện ảnh</strong>, bấm ảnh để xem toàn màn hình. Bấm ◀ ▶ để lướt.</div>
+        </div>
+
+        <div style="background:#fafafa;border:1px solid #e8e8e8;border-radius:8px;padding:14px;">
+          <div style="font-weight:bold;color:#333;margin-bottom:5px;">📋 Sao Chép Số Điện Thoại</div>
+          <div style="font-size:12.5px;color:#555;line-height:1.6;">Bấm số <strong>Đường dây nóng</strong> trên thanh trên cùng → số tự động sao chép vào bộ nhớ.</div>
+        </div>
+
+        <div style="background:#fafafa;border:1px solid #e8e8e8;border-radius:8px;padding:14px;">
+          <div style="font-weight:bold;color:#333;margin-bottom:5px;">🔝 Lên Đầu Trang</div>
+          <div style="font-size:12.5px;color:#555;line-height:1.6;">Cuộn xuống → nút <strong>▲</strong> đỏ xuất hiện góc phải → bấm để lên đầu trang ngay lập tức.</div>
+        </div>
+
+        <div style="background:#fafafa;border:1px solid #e8e8e8;border-radius:8px;padding:14px;">
+          <div style="font-weight:bold;color:#333;margin-bottom:5px;">🖨 In Trang</div>
+          <div style="font-size:12.5px;color:#555;line-height:1.6;">Bấm <strong>🖨 In</strong> trong header để in nội dung. Menu/header tự ẩn khi in, tiết kiệm mực.</div>
+        </div>
+
+        <div style="background:#fafafa;border:1px solid #e8e8e8;border-radius:8px;padding:14px;">
+          <div style="font-weight:bold;color:#333;margin-bottom:5px;">🏢 Dịch Vụ Công</div>
+          <div style="font-size:12.5px;color:#555;line-height:1.6;">Tra thủ tục hành chính: tạm trú, hộ khẩu, khai sinh, khai tử, đất đai, hỗ trợ hộ nghèo...</div>
+        </div>
+
+        <div style="background:#fafafa;border:1px solid #e8e8e8;border-radius:8px;padding:14px;">
+          <div style="font-weight:bold;color:#333;margin-bottom:5px;">🗺 Sơ Đồ Trang</div>
+          <div style="font-size:12.5px;color:#555;line-height:1.6;">Cuộn xuống footer → cột <strong>🗺 Sơ đồ trang</strong> → bấm để đến bất kỳ mục nào nhanh nhất.</div>
+        </div>
+
+        <div style="background:#fafafa;border:1px solid #e8e8e8;border-radius:8px;padding:14px;">
+          <div style="font-weight:bold;color:#333;margin-bottom:5px;">🎬 Xem Video Thôn</div>
+          <div style="font-size:12.5px;color:#555;line-height:1.6;">Vào <strong>Ảnh & Video → Video thôn</strong> để xem các video về cuộc sống và hoạt động thôn My Khê.</div>
+        </div>
+
+        <div style="background:#fafafa;border:1px solid #e8e8e8;border-radius:8px;padding:14px;">
+          <div style="font-weight:bold;color:#333;margin-bottom:5px;">👥 Các Đoàn Thể</div>
+          <div style="font-size:12.5px;color:#555;line-height:1.6;">Xem thông tin Chi bộ Đảng, Đoàn Thanh niên, Hội Phụ nữ, Nông dân, Người cao tuổi, Cựu chiến binh.</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Liên hệ -->
+    <div style="background:white;border-radius:12px;padding:22px 26px;margin-bottom:18px;box-shadow:0 2px 8px rgba(0,0,0,0.07);">
+      <h3 style="color:#8B1A1A;font-size:16px;margin-bottom:14px;padding-bottom:10px;border-bottom:2px solid #f0e0e0;">📞 Liên Hệ Hỗ Trợ</h3>
+      <table style="width:100%;border-collapse:collapse;font-size:13px;">
+        <tr style="background:#8B1A1A;color:white;"><th style="padding:9px 12px;text-align:left;">Kênh liên hệ</th><th style="padding:9px 12px;text-align:left;">Thông tin</th></tr>
+        <tr><td style="padding:8px 12px;border-bottom:1px solid #f0f0f0;font-weight:bold;color:#555;">☎ Điện thoại</td><td style="padding:8px 12px;border-bottom:1px solid #f0f0f0;">Trưởng thôn: <strong>0912.000.001</strong> | Phó thôn: <strong>0905.000.002</strong></td></tr>
+        <tr style="background:#fafafa;"><td style="padding:8px 12px;border-bottom:1px solid #f0f0f0;font-weight:bold;color:#555;">📧 Email</td><td style="padding:8px 12px;border-bottom:1px solid #f0f0f0;">mykhekesatHD@gmail.com</td></tr>
+        <tr><td style="padding:8px 12px;font-weight:bold;color:#555;">🌐 Website</td><td style="padding:8px 12px;">mekhekesat.pages.dev</td></tr>
+      </table>
+    </div>
+
+    <div style="text-align:center;padding:16px;font-size:12px;color:#888;">
+      © 2026 Cổng Thông Tin Điện Tử Thôn My Khê · Thiết kế: Hoàng Tam Hùng
+    </div>
+  </div>
+</div>
+
 <!-- LOGO MODAL -->
 <div class="logo-modal-overlay" id="logoModal" onclick="if(event.target===this)closeLogoModal()">
   <div class="logo-modal">
@@ -2954,6 +3068,7 @@ var VI = {
   'hero_badge': '✦ Thôn Văn Hóa Tiêu Biểu ✦',
   'topbar_hotline': '☎ Đường dây nóng: 0912.000.001',
   'nav_home': '🏠 Trang chủ',
+  'nav_guide': 'Hướng dẫn',
   'org_party': 'Chi bộ Đảng Cộng sản',
   'org_youth': 'Đoàn Thanh niên CS HCM',
   'org_elderly': 'Hội Người cao tuổi',
@@ -2984,6 +3099,7 @@ var VI = {
   'search_placeholder': 'Tìm kiếm thông tin...',
   // Nav
   'nav_home': '🏠 Trang chủ',
+  'nav_guide': 'Hướng dẫn',
   'nav_about': 'Giới thiệu',
   'nav_news': 'Tin tức',
   'nav_notice': 'Thông báo',
@@ -3039,6 +3155,7 @@ var EN = {
   'hero_badge': '✦ Outstanding Cultural Village ✦',
   'topbar_hotline': '☎ Hotline: 0912.000.001',
   'nav_home': '🏠 Home',
+  'nav_guide': 'User Guide',
   'org_party': 'Communist Party Cell',
   'org_youth': 'Ho Chi Minh Youth Union',
   'org_elderly': 'Elderly Association',
@@ -3068,6 +3185,7 @@ var EN = {
   'svc_feedback': 'Feedback & Complaints',
   'search_placeholder': 'Search information...',
   'nav_home': '🏠 Home',
+  'nav_guide': 'User Guide',
   'nav_about': 'About',
   'nav_news': 'News',
   'nav_notice': 'Notices',
