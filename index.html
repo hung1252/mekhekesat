@@ -2752,7 +2752,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // ===== LOAD POSTS FROM SUPABASE =====
 const SB_URL = 'https://qypxbomomhrfskfwjhid.supabase.co';
-const SB_KEY = 'sb_publishable__-gEe6Tl9zX6Detpskn31A_r_8hnm7J';
+const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF5cHhib21vbWhyZnNrZndqaGlkIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3OTQ0MDIxNSwiZXhwIjoyMDk1MDE2MjE1fQ.5GjA3Dc3Pj6jnltPz8YphHg-Jf2KZBquEIDvt7k5i40';
 
 async function fetchPosts(types){
   try{
@@ -3371,8 +3371,8 @@ async function submitNewPost(){
   try{
     var res = await fetch(SB_ADMIN_URL+'/rest/v1/posts',{
       method:'POST',
-      headers:{'apikey':SB_ADMIN_KEY,'Authorization':'Bearer '+SB_ADMIN_KEY,'Content-Type':'application/json','Prefer':'return=minimal'},
-      body:JSON.stringify({type:type,title:title,content:finalContent||null,link:link||null,published:true,image_url:imageUrl||null})
+      headers:{'apikey':SB_ADMIN_KEY,'Authorization':'Bearer '+SB_ADMIN_KEY,'Content-Type':'application/json','Prefer':'return=minimal','x-client-info':'supabase-js/2.0.0'},
+      body:JSON.stringify({type:type,title:title,content:finalContent||null,link:link||null,published:true,image_url:firstImageUrl||null})
     });
     if(res.ok||res.status===201){
       document.getElementById('new-post-modal').style.display='none';
