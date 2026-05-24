@@ -3300,20 +3300,29 @@ function previewNpVideo(){
 async function uploadToStorage(file, bucket){
   var ext = file.name.split('.').pop();
   var filename = Date.now() + '_' + Math.random().toString(36).substr(2,6) + '.' + ext;
-  var res = await fetch(SB_ADMIN_URL+'/storage/v1/object/'+bucket+'/'+filename,{
-    method:'POST',
-    headers:{
-      'apikey':SB_ADMIN_KEY,
-      'Authorization':'Bearer '+SB_ADMIN_KEY,
-      'Content-Type':file.type,
-      'x-upsert':'true'
-    },
-    body:file
-  });
-  if(res.ok||res.status===200){
-    return SB_ADMIN_URL+'/storage/v1/object/public/'+bucket+'/'+filename;
+  // PDF cần Content-Type đúng
+  var contentType = (ext==='pdf' || file.name.toLowerCase().endsWith('.pdf')) ? 'application/pdf' : (file.type || 'application/octet-stream');
+  try{
+    var res = await fetch(SB_ADMIN_URL+'/storage/v1/object/'+bucket+'/'+filename,{
+      method:'POST',
+      headers:{
+        'apikey':SB_ADMIN_KEY,
+        'Authorization':'Bearer '+SB_ADMIN_KEY,
+        'Content-Type':contentType,
+        'x-upsert':'true'
+      },
+      body:file
+    });
+    if(res.ok||res.status===200){
+      return {url: SB_ADMIN_URL+'/storage/v1/object/public/'+bucket+'/'+filename, error:null};
+    }
+    var errBody = await res.text();
+    console.error('Storage upload error ['+bucket+'] HTTP '+res.status+':', errBody);
+    return {url:null, error:'HTTP '+res.status+': '+errBody};
+  } catch(e){
+    console.error('Storage upload exception:', e);
+    return {url:null, error: e.message||'Network error'};
   }
-  return null;
 }
 
 async function submitNewPost(){
@@ -3333,9 +3342,9 @@ async function submitNewPost(){
   if(npSelectedImages.length > 0){
     document.getElementById('np-image-count').textContent = '⏳ Đang upload ảnh...';
     for(var i=0; i<npSelectedImages.length; i++){
-      var iUrl = await uploadToStorage(npSelectedImages[i], 'images');
-      if(!iUrl){ errEl.textContent='Lỗi upload ảnh '+(i+1)+'! Thử lại.'; errEl.style.display='block'; return; }
-      imageUrls.push(iUrl);
+      var r = await uploadToStorage(npSelectedImages[i], 'images');
+      if(!r.url){ errEl.textContent='Lỗi upload ảnh '+(i+1)+': '+r.error; errEl.style.display='block'; return; }
+      imageUrls.push(r.url);
     }
     firstImageUrl = imageUrls[0];
     document.getElementById('np-image-count').textContent = '✅ Đã upload ' + imageUrls.length + ' ảnh!';
@@ -3343,8 +3352,9 @@ async function submitNewPost(){
 
   if(pdfFile){
     document.getElementById('np-pdf-status').textContent = '⏳ Đang upload PDF...';
-    pdfUrl = await uploadToStorage(pdfFile, 'documents');
-    if(!pdfUrl){ errEl.textContent='Lỗi upload PDF! Thử lại.'; errEl.style.display='block'; return; }
+    var rPdf = await uploadToStorage(pdfFile, 'documents');
+    if(!rPdf.url){ errEl.textContent='Lỗi upload PDF: '+rPdf.error; errEl.style.display='block'; return; }
+    pdfUrl = rPdf.url;
     document.getElementById('np-pdf-status').textContent = '✅ Upload PDF thành công!';
   }
 
