@@ -3,148 +3,46 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Đăng bài mới - Mekhekesat</title>
+  <title>Danh sách bài viết - Mekhekesat</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <style>
-    .upload-box { transition: all 0.3s; }
-    .upload-box:hover { background-color: #f8fafc; }
-  </style>
 </head>
-<body class="bg-gray-50 min-h-screen py-10">
-  <div class="max-w-3xl mx-auto bg-white shadow-2xl rounded-3xl overflow-hidden">
-    <div class="bg-emerald-600 text-white p-6">
-      <h1 class="text-3xl font-bold flex items-center gap-3">
-        <i class="fas fa-edit"></i> Đăng bài mới
-      </h1>
+<body class="bg-gray-50 min-h-screen">
+  <div class="max-w-5xl mx-auto p-6">
+    <div class="flex justify-between items-center mb-8">
+      <h1 class="text-3xl font-bold">📚 Danh sách bài viết</h1>
+      <a href="dang-bai.html" class="bg-emerald-600 text-white px-6 py-3 rounded-2xl hover:bg-emerald-700 flex items-center gap-2">
+        ✍️ Đăng bài mới
+      </a>
     </div>
 
-    <form id="postForm" class="p-8 space-y-8">
-      <div>
-        <label class="block text-sm font-medium text-gray-700 mb-2">Loại bài viết <span class="text-red-500">*</span></label>
-        <select id="type" required class="w-full px-5 py-3 border border-gray-300 rounded-2xl focus:ring-2 focus:ring-emerald-500 outline-none">
-          <option value="">Chọn loại bài</option>
-          <option value="lichsu">Lịch sử</option>
-          <option value="ditich">Di tích</option>
-          <option value="vanhoa">Văn hóa</option>
-          <option value="thegioi">Thế giới</option>
-          <option value="dail">Danh nhân</option>
-          <option value="yte">Y tế</option>
-        </select>
-      </div>
-
-      <div>
-        <label class="block text-sm font-medium text-gray-700 mb-2">Tiêu đề <span class="text-red-500">*</span></label>
-        <input type="text" id="title" required class="w-full px-5 py-3 border border-gray-300 rounded-2xl focus:ring-2 focus:ring-emerald-500 outline-none">
-      </div>
-
-      <div>
-        <label class="block text-sm font-medium text-gray-700 mb-2">Nội dung <span class="text-red-500">*</span></label>
-        <textarea id="content" rows="14" required class="w-full px-5 py-3 border border-gray-300 rounded-2xl focus:ring-2 focus:ring-emerald-500 outline-none resize-y"></textarea>
-      </div>
-
-      <div>
-        <label class="block text-sm font-medium text-gray-700 mb-2">Link liên kết ngoài</label>
-        <input type="url" id="link" placeholder="https://..." class="w-full px-5 py-3 border border-gray-300 rounded-2xl focus:ring-2 focus:ring-emerald-500 outline-none">
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div>
-          <label class="block text-sm font-medium text-gray-700 mb-2">Ảnh minh họa</label>
-          <input type="file" id="image" accept="image/*" class="upload-box w-full text-sm text-gray-500 file:mr-4 file:py-3 file:px-6 file:rounded-2xl file:border-0 file:bg-emerald-50 file:text-emerald-700">
-        </div>
-        <div>
-          <label class="block text-sm font-medium text-gray-700 mb-2">File PDF</label>
-          <input type="file" id="pdf" accept=".pdf" class="upload-box w-full text-sm text-gray-500 file:mr-4 file:py-3 file:px-6 file:rounded-2xl file:border-0 file:bg-red-50 file:text-red-700">
-        </div>
-        <div>
-          <label class="block text-sm font-medium text-gray-700 mb-2">Video</label>
-          <input type="file" id="video" accept="video/*" class="upload-box w-full text-sm text-gray-500 file:mr-4 file:py-3 file:px-6 file:rounded-2xl file:border-0 file:bg-blue-50 file:text-blue-700">
-        </div>
-      </div>
-
-      <div class="flex gap-4 pt-6">
-        <button type="button" onclick="resetForm()" 
-          class="flex-1 py-4 border border-gray-300 rounded-2xl font-medium text-gray-700 hover:bg-gray-50 transition">
-          Hủy
-        </button>
-        <button type="submit" id="submitBtn"
-          class="flex-1 py-4 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-2xl transition flex items-center justify-center gap-2">
-          <i class="fas fa-paper-plane"></i>
-          <span>Đăng bài</span>
-        </button>
-      </div>
-    </form>
+    <div id="debug" class="mb-6 p-4 bg-blue-50 rounded-2xl text-sm"></div>
+    <div id="postsList" class="space-y-8"></div>
   </div>
 
   <script>
     const supabaseUrl = 'https://qypxbomomhrfskfwjhid.supabase.co';
-    const supabaseKey = 'sb_publishable__-gEe6Tl9zX6Detpskn31A_r_8hnm7J';
+    const supabaseAnonKey = 'sb_publishable__-gEe6Tl9zX6Detpskn31A_r_8hnm7J';
 
     const { createClient } = supabase;
-    const db = createClient(supabaseUrl, supabaseKey);
+    const db = createClient(supabaseUrl, supabaseAnonKey);
 
-    document.getElementById('postForm').addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const btn = document.getElementById('submitBtn');
-      btn.disabled = true;
-      btn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Đang đăng bài...`;
+    async function loadPosts() {
+      const debug = document.getElementById('debug');
+      debug.innerHTML = '🔄 Đang tải bài viết từ Supabase...';
 
       try {
-        const type = document.getElementById('type').value;
-        const title = document.getElementById('title').value.trim();
-        const content = document.getElementById('content').value.trim();
-        const link = document.getElementById('link').value.trim();
+        const { data, error } = await db
+          .from('posts')
+          .select('*')
+          .order('id', { ascending: false });
 
-        let image_url = null;
-        let pdf_url = null;
-        let video_url = null;
-
-        const imageFile = document.getElementById('image').files[0];
-        if (imageFile) {
-          const fileName = `img-${Date.now()}-${imageFile.name}`;
-          await db.storage.from('images').upload(fileName, imageFile);
-          const { data } = db.storage.from('images').getPublicUrl(fileName);
-          image_url = data.publicUrl;
+        if (error) {
+          debug.innerHTML = `❌ Lỗi: ${error.message}`;
+          return;
         }
 
-        const pdfFile = document.getElementById('pdf').files[0];
-        if (pdfFile) {
-          const fileName = `pdf-${Date.now()}-${pdfFile.name}`;
-          await db.storage.from('documents').upload(fileName, pdfFile);
-          const { data } = db.storage.from('documents').getPublicUrl(fileName);
-          pdf_url = data.publicUrl;
-        }
+        debug.innerHTML = `✅ Tìm thấy ${data.length} bài viết`;
 
-        const videoFile = document.getElementById('video').files[0];
-        if (videoFile) {
-          const fileName = `video-${Date.now()}-${videoFile.name}`;
-          await db.storage.from('documents').upload(fileName, videoFile);
-          const { data } = db.storage.from('documents').getPublicUrl(fileName);
-          video_url = data.publicUrl;
-        }
-
-        const { error } = await db.from('posts').insert([{
-          type, title, content, link: link || null, image_url, pdf_url, video_url
-        }]);
-
-        if (error) throw error;
-
-        alert('✅ Đăng bài thành công!');
-        resetForm();
-
-      } catch (err) {
-        alert('❌ Lỗi: ' + err.message);
-      } finally {
-        btn.disabled = false;
-        btn.innerHTML = `<i class="fas fa-paper-plane"></i> Đăng bài`;
-      }
-    });
-
-    function resetForm() {
-      document.getElementById('postForm').reset();
-    }
-  </script>
-</body>
-</html>
+        const container = document.getElementById('postsList');
+        containe
