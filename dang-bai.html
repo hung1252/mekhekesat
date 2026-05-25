@@ -37,7 +37,7 @@
           const imgHtml = post.image_url ? '<img src="' + post.image_url + '" class="mt-6 w-full h-64 object-cover rounded-2xl">' : '';
           const pdfHtml = post.pdf_url ? '<a href="' + post.pdf_url + '" target="_blank" class="mt-4 inline-block text-red-600 underline">📄 Xem PDF</a>' : '';
           const videoHtml = post.video_url ? '<video src="' + post.video_url + '" controls class="mt-4 w-full rounded-2xl"></video>' : '';
-          container.innerHTML += '<div class="bg-white rounded-3xl shadow p-6"><span class="px-4 py-1 bg-emerald-100 text-emerald-700 text-sm rounded-full">' + (post.type || 'Khác') + '</span><h2 class="text-2xl font-bold mt-4">' + post.title + '</h2><p class="text-gray-600 mt-3">' + post.content.substring(0, 250) + '...</p>' + imgHtml + pdfHtml + videoHtml + '</div>';
+          container.innerHTML += '<div class="bg-white rounded-3xl shadow p-6"><span class="px-4 py-1 bg-emerald-100 text-emerald-700 text-sm rounded-full">' + (post.type || 'Khác') + '</span><h2 class="text-2xl font-bold mt-4">' + post.title + '</h2><p class="text-gray-600 mt-3">' + post.content.substring(0, 250) (post.content || '')+ '...</p>' + imgHtml + pdfHtml + videoHtml + '</div>';
         });
       } catch (err) { debug.innerHTML = '❌ Lỗi: ' + err.message; }
     }
