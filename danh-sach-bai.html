@@ -11,15 +11,13 @@
   <div class="max-w-5xl mx-auto p-6">
     <div class="flex justify-between items-center mb-8">
       <h1 class="text-3xl font-bold">📚 Danh sách bài viết</h1>
-      <a href="dang-bai.html" 
-         class="bg-emerald-600 text-white px-6 py-3 rounded-2xl hover:bg-emerald-700 flex items-center gap-2">
+      <a href="dang-bai.html" class="bg-emerald-600 text-white px-6 py-3 rounded-2xl hover:bg-emerald-700 flex items-center gap-2">
         ✍️ Đăng bài mới
       </a>
     </div>
 
-    <div id="postsList" class="space-y-8">
-      <!-- Bài viết sẽ hiện ở đây -->
-    </div>
+    <div id="debug" class="mb-6 p-4 bg-yellow-100 text-yellow-800 rounded-xl text-sm"></div>
+    <div id="postsList" class="space-y-8"></div>
   </div>
 
   <script>
@@ -29,42 +27,51 @@
     const supabase = Supabase.createClient(supabaseUrl, supabaseAnonKey);
 
     async function loadPosts() {
-      const { data, error } = await supabase
-        .from('posts')
-        .select('*')
-        .order('id', { ascending: false });
+      const debugDiv = document.getElementById('debug');
+      debugDiv.innerHTML = '🔄 Đang tải dữ liệu từ Supabase...';
 
-      const container = document.getElementById('postsList');
-      container.innerHTML = '';
+      try {
+        const { data, error } = await supabase
+          .from('posts')
+          .select('*')
+          .order('id', { ascending: false });
 
-      if (error) {
-        container.innerHTML = `<p class="text-red-500 text-center py-20">Lỗi: ${error.message}</p>`;
-        return;
-      }
+        if (error) {
+          debugDiv.innerHTML = `<span class="text-red-600">❌ Lỗi: ${error.message}</span><br><small>RLS có thể đang bật hoặc bảng chưa có dữ liệu</small>`;
+          console.error(error);
+          return;
+        }
 
-      if (!data || data.length === 0) {
-        container.innerHTML = `<p class="text-gray-500 text-center py-20">Chưa có bài viết nào. Hãy đăng bài đầu tiên!</p>`;
-        return;
-      }
+        debugDiv.innerHTML = `✅ Tìm thấy ${data.length} bài viết`;
 
-      data.forEach(post => {
-        const html = `
-          <div class="bg-white rounded-3xl shadow-md overflow-hidden">
-            <div class="p-6">
-              <span class="inline-block px-4 py-1 bg-emerald-100 text-emerald-700 text-sm rounded-full">${post.type || 'Khác'}</span>
-              <h2 class="text-2xl font-bold mt-3 mb-2">${post.title}</h2>
-              <p class="text-gray-600 line-clamp-4">${post.content}</p>
+        const container = document.getElementById('postsList');
+        container.innerHTML = '';
+
+        if (data.length === 0) {
+          container.innerHTML = `<p class="text-gray-500 text-center py-20 text-lg">Chưa có bài viết nào. Hãy thử đăng bài đầu tiên!</p>`;
+          return;
+        }
+
+        data.forEach(post => {
+          const html = `
+            <div class="bg-white rounded-3xl shadow overflow-hidden">
+              <div class="p-6">
+                <span class="px-4 py-1 bg-emerald-100 text-emerald-700 text-sm rounded-full">${post.type || 'Khác'}</span>
+                <h2 class="text-2xl font-bold mt-3">${post.title}</h2>
+                <p class="text-gray-600 mt-3 line-clamp-4">${post.content}</p>
+              </div>
+              ${post.image_url ? `<img src="${post.image_url}" class="w-full h-64 object-cover">` : ''}
             </div>
-            ${post.image_url ? `<img src="${post.image_url}" class="w-full h-64 object-cover">` : ''}
-            <div class="p-6 pt-0">
-              ${post.link ? `<a href="${post.link}" target="_blank" class="text-blue-600 hover:underline">🔗 Xem link ngoài</a>` : ''}
-            </div>
-          </div>
-        `;
-        container.innerHTML += html;
-      });
+          `;
+          container.innerHTML += html;
+        });
+
+      } catch (err) {
+        document.getElementById('debug').innerHTML = `❌ Lỗi không xác định: ${err.message}`;
+      }
     }
 
+    // Tự động load
     loadPosts();
   </script>
 </body>
