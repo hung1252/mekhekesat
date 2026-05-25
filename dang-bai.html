@@ -15,63 +15,32 @@
         ✍️ Đăng bài mới
       </a>
     </div>
-
     <div id="debug" class="mb-6 p-4 bg-blue-50 rounded-2xl text-sm"></div>
     <div id="postsList" class="space-y-8"></div>
   </div>
-
   <script>
     const supabaseUrl = 'https://qypxbomomhrfskfwjhid.supabase.co';
     const supabaseAnonKey = 'sb_publishable__-gEe6Tl9zX6Detpskn31A_r_8hnm7J';
-
     const { createClient } = supabase;
     const db = createClient(supabaseUrl, supabaseAnonKey);
-
     async function loadPosts() {
       const debug = document.getElementById('debug');
-      debug.innerHTML = '🔄 Đang tải bài viết từ Supabase...';
-
+      const container = document.getElementById('postsList');
+      debug.innerHTML = '🔄 Đang tải...';
       try {
-        const { data, error } = await db
-          .from('posts')
-          .select('*')
-          .order('id', { ascending: false });
-
-        if (error) {
-          debug.innerHTML = `❌ Lỗi: ${error.message}`;
-          return;
-        }
-
-        debug.innerHTML = `✅ Tìm thấy ${data.length} bài viết`;
-
-        const container = document.getElementById('postsList');
-        containe
-r.innerHTML = '';
-
-        if (data.length === 0) {
-          container.innerHTML = `<p class="text-center py-20 text-gray-500">Chưa có bài viết nào.</p>`;
-          return;
-        }
-
+        const { data, error } = await db.from('posts').select('*').order('id', { ascending: false });
+        if (error) { debug.innerHTML = '❌ Lỗi: ' + error.message; return; }
+        debug.innerHTML = '✅ Tìm thấy ' + data.length + ' bài viết';
+        er.innerHTML = '';
+        if (data.length === 0) { container.innerHTML = '<p class="text-center py-20 text-gray-500">Chưa có bài viết nào.</p>'; return; }
         data.forEach(post => {
-          const item = `
-            <div class="bg-white rounded-3xl shadow p-6">
-              <span class="px-4 py-1 bg-emerald-100 text-emerald-700 text-sm rounded-full">${post.type || 'Khác'}</span>
-              <h2 class="text-2xl font-bold mt-4">${post.title}</h2>
-              <p class="text-gray-600 mt-3">${post.content.substring(0, 250)}...</p>
-              ${post.image_url ? `<img src="${post.image_url}" class="mt-6 w-full h-64 object-cover rounded-2xl">` : ''}
-              ${post.pdf_url ? `<a href="${post.pdf_url}" target="_blank" class="mt-4 inline-block text-red-600 underline">📄 Xem PDF</a>` : ''}
-              ${post.video_url ? `<video src="${post.video_url}" controls class="mt-4 w-full rounded-2xl"></video>` : ''}
-            </div>
-          `;
-          container.innerHTML += item;
+          const imgHtml = post.image_url ? '<img src="' + post.image_url + '" class="mt-6 w-full h-64 object-cover rounded-2xl">' : '';
+          const pdfHtml = post.pdf_url ? '<a href="' + post.pdf_url + '" target="_blank" class="mt-4 inline-block text-red-600 underline">📄 Xem PDF</a>' : '';
+          const videoHtml = post.video_url ? '<video src="' + post.video_url + '" controls class="mt-4 w-full rounded-2xl"></video>' : '';
+          container.innerHTML += '<div class="bg-white rounded-3xl shadow p-6"><span class="px-4 py-1 bg-emerald-100 text-emerald-700 text-sm rounded-full">' + (post.type || 'Khác') + '</span><h2 class="text-2xl font-bold mt-4">' + post.title + '</h2><p class="text-gray-600 mt-3">' + post.content.substring(0, 250) + '...</p>' + imgHtml + pdfHtml + videoHtml + '</div>';
         });
-
-      } catch (err) {
-        debug.innerHTML = `❌ Lỗi: ${err.message}`;
-      }
+      } catch (err) { debug.innerHTML = '❌ Lỗi: ' + err.message; }
     }
-
     loadPosts();
   </script>
 </body>
