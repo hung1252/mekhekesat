@@ -3,45 +3,36 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Danh sách bài viết - Mekhekesat</title>
+  <title>Danh sach bai viet - Mekhekesat</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body class="bg-gray-50 min-h-screen">
   <div class="max-w-5xl mx-auto p-6">
     <div class="flex justify-between items-center mb-8">
-      <h1 class="text-3xl font-bold">📚 Danh sách bài viết</h1>
-      <a href="dang-bai.html" class="bg-emerald-600 text-white px-6 py-3 rounded-2xl hover:bg-emerald-700 flex items-center gap-2">
-        ✍️ Đăng bài mới
-      </a>
+      <h1 class="text-3xl font-bold">Danh sach bai viet</h1>
+      <a href="dang-bai.html" class="bg-emerald-600 text-white px-6 py-3 rounded-2xl hover:bg-emerald-700">Dang bai moi</a>
     </div>
     <div id="debug" class="mb-6 p-4 bg-blue-50 rounded-2xl text-sm"></div>
-    <div id="postsList" class="space-y-8"></div>
+    <div id="list" class="space-y-6"></div>
   </div>
   <script>
-    const supabaseUrl = 'https://qypxbomomhrfskfwjhid.supabase.co';
-    const supabaseAnonKey = 'sb_publishable__-gEe6Tl9zX6Detpskn31A_r_8hnm7J';
-    const { createClient } = supabase;
-    const db = createClient(supabaseUrl, supabaseAnonKey);
-    async function loadPosts() {
-      const debug = document.getElementById('debug');
-      const container = document.getElementById('postsList');
-      debug.innerHTML = '🔄 Đang tải...';
-      try {
-        const { data, error } = await db.from('posts').select('*').order('id', { ascending: false });
-        if (error) { debug.innerHTML = '❌ Lỗi: ' + error.message; return; }
-        debug.innerHTML = '✅ Tìm thấy ' + data.length + ' bài viết';
-        container.innerHTML = '';
-        if (data.length === 0) { container.innerHTML = '<p class="text-center py-20 text-gray-500">Chưa có bài viết nào.</p>'; return; }
-        data.forEach(post => {
-          const imgHtml = post.image_url ? '<img src="' + post.image_url + '" class="mt-6 w-full h-64 object-cover rounded-2xl">' : '';
-          const pdfHtml = post.pdf_url ? '<a href="' + post.pdf_url + '" target="_blank" class="mt-4 inline-block text-red-600 underline">📄 Xem PDF</a>' : '';
-          const videoHtml = post.video_url ? '<video src="' + post.video_url + '" controls class="mt-4 w-full rounded-2xl"></video>' : '';
-          container.innerHTML += '<div class="bg-white rounded-3xl shadow p-6"><span class="px-4 py-1 bg-emerald-100 text-emerald-700 text-sm rounded-full">' + (post.type || 'Khác') + '</span><h2 class="text-2xl font-bold mt-4">' + post.title + '</h2><p class="text-gray-600 mt-3">' + String(post.content || '').substring+ '...</p>' + imgHtml + pdfHtml + videoHtml + '</div>';
-        });
-      } catch (err) { debug.innerHTML = '❌ Lỗi: ' + err.message; }
-    }
-    loadPosts();
+    var url = 'https://qypxbomomhrfskfwjhid.supabase.co';
+    var key = 'sb_publishable__-gEe6Tl9zX6Detpskn31A_r_8hnm7J';
+    var db = supabase.createClient(url, key);
+    db.from('posts').select('*').order('id', {ascending: false}).then(function(res) {
+      var debug = document.getElementById('debug');
+      var list = document.getElementById('list');
+      if (res.error) { debug.innerHTML = 'Loi: ' + res.error.message; return; }
+      debug.innerHTML = 'Tim thay ' + res.data.length + ' bai viet';
+      res.data.forEach(function(p) {
+        var txt = p.content ? p.content.slice(0, 250) + '...' : '';
+        var img = p.image_url ? '<img src="' + p.image_url + '" class="mt-4 w-full h-48 object-cover rounded-xl">' : '';
+        var pdf = p.pdf_url ? '<a href="' + p.pdf_url + '" target="_blank" class="mt-2 inline-block text-red-600 underline">Xem PDF</a>' : '';
+        var vid = p.video_url ? '<video src="' + p.video_url + '" controls class="mt-4 w-full rounded-xl"></video>' : '';
+        list.innerHTML += '<div class="bg-white rounded-2xl shadow p-6"><div class="text-sm text-emerald-700 font-medium mb-2">' + (p.type || 'Khac') + '</div><h2 class="text-xl font-bold">' + (p.title || '') + '</h2><p class="text-gray-600 mt-2">' + txt + '</p>' + img + pdf + vid + '</div>';
+      });
+    });
   </script>
 </body>
 </html>
