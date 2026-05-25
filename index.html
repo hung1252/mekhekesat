@@ -1,13 +1,75 @@
-<!-- FORM ĐĂNG BÀI MỚI -->
-<div class="my-8 p-6 bg-white rounded-2xl shadow">
-  <h2 class="text-2xl font-bold mb-4 flex items-center gap-2">
-    ✍️ Đăng bài mới
-  </h2>
-  <p class="text-gray-600 mb-6">Sử dụng form hiện đại kết nối Supabase</p>
-  
-  <a href="dang-bai.html" 
-     class="inline-flex items-center gap-3 bg-emerald-600 hover:bg-emerald-700 text-white font-medium px-8 py-4 rounded-2xl transition text-lg">
-    <i class="fas fa-edit"></i>
-    Mở form đăng bài mới
-  </a>
-</div>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Danh sách bài viết - Mekhekesat</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body class="bg-gray-50 min-h-screen">
+  <div class="max-w-5xl mx-auto p-6">
+    <div class="flex justify-between items-center mb-8">
+      <h1 class="text-3xl font-bold">📚 Danh sách bài viết</h1>
+      <a href="dang-bai.html" class="bg-emerald-600 text-white px-6 py-3 rounded-2xl hover:bg-emerald-700 flex items-center gap-2">
+        ✍️ Đăng bài mới
+      </a>
+    </div>
+
+    <div id="debug" class="mb-6 p-4 bg-blue-50 rounded-2xl text-sm"></div>
+    <div id="postsList" class="space-y-8"></div>
+  </div>
+
+  <script>
+    const supabaseUrl = 'https://qypxbomomhrfskfwjhid.supabase.co';
+    const supabaseAnonKey = 'sb_publishable__-gEe6Tl9zX6Detpskn31A_r_8hnm7J';
+
+    const supabase = Supabase.createClient(supabaseUrl, supabaseAnonKey);
+
+    async function loadPosts() {
+      const debug = document.getElementById('debug');
+      debug.innerHTML = '🔄 Đang tải bài viết...';
+
+      try {
+        const { data, error } = await supabase
+          .from('posts')
+          .select('*')
+          .order('id', { ascending: false });
+
+        if (error) {
+          debug.innerHTML = `❌ Lỗi Supabase: ${error.message}<br><small>Thường do RLS bật hoặc bảng chưa có dữ liệu</small>`;
+          console.error(error);
+          return;
+        }
+
+        debug.innerHTML = `✅ Tìm thấy ${data ? data.length : 0} bài viết`;
+
+        const container = document.getElementById('postsList');
+        container.innerHTML = '';
+
+        if (!data || data.length === 0) {
+          container.innerHTML = `<p class="text-center py-20 text-gray-500 text-lg">Chưa có bài viết nào.<br>Hãy đăng bài thử nghiệm đi!</p>`;
+          return;
+        }
+
+        data.forEach(post => {
+          const item = document.createElement('div');
+          item.className = "bg-white rounded-3xl shadow p-6";
+          item.innerHTML = `
+            <span class="px-4 py-1 bg-emerald-100 text-emerald-700 rounded-full text-sm">${post.type || 'Khác'}</span>
+            <h2 class="text-2xl font-bold mt-4">${post.title}</h2>
+            <p class="text-gray-600 mt-3 line-clamp-5">${post.content}</p>
+            ${post.image_url ? `<img src="${post.image_url}" class="mt-6 rounded-2xl w-full h-64 object-cover">` : ''}
+          `;
+          container.appendChild(item);
+        });
+
+      } catch (err) {
+        document.getElementById('debug').innerHTML = `❌ Lỗi: ${err.message}`;
+      }
+    }
+
+    loadPosts();
+  </script>
+</body>
+</html>
