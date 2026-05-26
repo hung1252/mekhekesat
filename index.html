@@ -2752,8 +2752,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // ===== LOAD POSTS FROM SUPABASE =====
 const SB_URL = 'https://qypxbomomhrfskfwjhid.supabase.co';
-const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF5cHhib21vbWhyZnNrZndqaGlkIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3OTQ0MDIxNSwiZXhwIjoyMDk1MDE2MjE1fQ.5GjA3Dc3Pj6jnltPz8YphHg-Jf2KZBquEIDvt7k5i40';
-
+const SB_KEY = 'sb_publishable__-gEe6Tl9zX6Detpskn31A_r_8hnm7J';
 async function fetchPosts(types){
   try{
     var filter = types.map(function(t){return 'type.eq.'+t;}).join(',');
